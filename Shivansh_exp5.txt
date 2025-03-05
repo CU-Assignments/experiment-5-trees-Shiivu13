@@ -1,0 +1,42 @@
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class SameTree {
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        // Base cases
+        if (p == null && q == null) return true;  // Both trees are empty
+        if (p == null || q == null) return false; // One tree is empty, the other is not
+        if (p.val != q.val) return false;         // Root values are different
+
+        // Recursively check left and right subtrees
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    public static void main(String[] args) {
+        // Creating first tree (Tree p)
+        TreeNode p = new TreeNode(1);
+        p.left = new TreeNode(2);
+        p.right = new TreeNode(3);
+
+        // Creating second tree (Tree q)
+        TreeNode q = new TreeNode(1);
+        q.left = new TreeNode(2);
+        q.right = new TreeNode(3);
+
+        // Checking if trees are the same
+        boolean result = isSameTree(p, q);
+        System.out.println("Are both trees the same? " + result);
+    }
+}
+
+OUTPUT
+Are both trees the same? true
